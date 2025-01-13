@@ -13,6 +13,14 @@ Pod::Spec.new do |spec|
   spec.authors      = 'tencent video cloud'
   spec.summary      = 'TUICallKit'
   spec.xcconfig     = { 'VALID_ARCHS' => 'armv7 arm64 x86_64' }
+
+  # 这里建议用 HTTPS git 地址 + 指定 tag。
+  # 如果还没打 tag，可以先写 :branch => 'main'，或者创建一个 tag '2.6.0.1080' 并推上去。
+  spec.source       = {
+    :git => 'https://github.com/presence-io/TUICallKit-iOS.git',
+    # :tag => spec.version.to_s
+    # :branch => 'main
+  }
   
   spec.dependency 'TUICore'
   spec.dependency 'SnapKit'
