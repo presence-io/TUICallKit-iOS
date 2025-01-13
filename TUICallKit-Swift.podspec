@@ -19,7 +19,15 @@ Pod::Spec.new do |spec|
 
   spec.requires_arc = true
   spec.static_framework = true
-  spec.source = { :path => './iOS/' }
+  spec.source_files  = 'iOS/TUICallKit-Swift/**/*.{h,m,mm,swift}' 
+  spec.resource      = ['iOS/TUICallKit-Swift/Resources/*.bundle']
+  spec.resource_bundles = {
+    'TUICallKitBundle' => [
+      'iOS/TUICallKit-Swift/Resources/**/*.strings',
+      'iOS/TUICallKit-Swift/Resources/AudioFile',
+      'iOS/TUICallKit-Swift/Resources/*.xcassets'
+    ]
+  }
   spec.swift_version = '5.0'
   
   spec.ios.framework = ['AVFoundation', 'Accelerate', 'AssetsLibrary']
@@ -30,25 +38,35 @@ Pod::Spec.new do |spec|
   spec.subspec 'TRTC' do |trtc|
     trtc.dependency 'TXLiteAVSDK_TRTC'
     trtc.dependency 'TUICallEngine/TRTC', '~> 2.6.0.1080'
-    trtc.source_files = 'TUICallKit-Swift/**/*.{h,m,mm,swift}'
+    trtc.source_files = 'iOS/TUICallKit-Swift/**/*.{h,m,mm,swift}'
     trtc.resource_bundles = {
-      'TUICallKitBundle' => ['TUICallKit-Swift/Resources/**/*.strings', 'TUICallKit-Swift/Resources/AudioFile', 'TUICallKit-Swift/Resources/*.xcassets']
+      'TUICallKitBundle' => [
+        'iOS/TUICallKit-Swift/Resources/**/*.strings',
+        'iOS/TUICallKit-Swift/Resources/AudioFile',
+        'iOS/TUICallKit-Swift/Resources/*.xcassets'
+      ]
     }
-    trtc.resource = ['TUICallKit-Swift/Resources/*.bundle']
+    trtc.resource = ['iOS/TUICallKit-Swift/Resources/*.bundle']
   end
   
   spec.subspec 'Professional' do |professional|
     professional.dependency 'TXLiteAVSDK_Professional'
     professional.dependency 'TUICallEngine/Professional', '~> 2.6.0.1080'
-    professional.source_files = 'TUICallKit-Swift/**/*.{h,m,mm,swift}'
+    professional.source_files = 'iOS/TUICallKit-Swift/**/*.{h,m,mm,swift}'
     professional.resource_bundles = {
-      'TUICallKitBundle' => ['TUICallKit-Swift/Resources/**/*.strings', 'TUICallKit-Swift/Resources/AudioFile', 'TUICallKit-Swift/Resources/*.xcassets']
+      'TUICallKitBundle' => [
+        'iOS/TUICallKit-Swift/Resources/**/*.strings',
+        'iOS/TUICallKit-Swift/Resources/AudioFile',
+        'iOS/TUICallKit-Swift/Resources/*.xcassets'
+      ]
     }
-    professional.resource = ['TUICallKit-Swift/Resources/*.bundle']
+    professional.resource = ['iOS/TUICallKit-Swift/Resources/*.bundle']
   end
   
   spec.resource_bundles = {
-    'TUICallKit-Swift_Privacy' => ['TUICallKit-Swift/Sources/PrivacyInfo.xcprivacy']
+    'TUICallKit-Swift_Privacy' => [
+      'iOS/TUICallKit-Swift/Sources/PrivacyInfo.xcprivacy'
+    ]
   }
   
 end
