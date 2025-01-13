@@ -19,7 +19,7 @@ Pod::Spec.new do |spec|
   spec.source       = {
     :git => 'https://github.com/presence-io/TUICallKit-iOS.git',
     # :tag => spec.version.to_s
-    # :branch => 'main
+    :branch => 'main
   }
   
   spec.dependency 'TUICore'
