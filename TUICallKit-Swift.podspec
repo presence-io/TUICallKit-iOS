@@ -16,10 +16,10 @@ Pod::Spec.new do |spec|
 
   # 这里建议用 HTTPS git 地址 + 指定 tag。
   # 如果还没打 tag，可以先写 :branch => 'main'，或者创建一个 tag '2.6.0.1080' 并推上去。
-  spec.source       = {
+  spec.source = {
     :git => 'https://github.com/presence-io/TUICallKit-iOS.git',
     # :tag => spec.version.to_s
-    :branch => 'main
+    :branch => 'main'
   }
   
   spec.dependency 'TUICore'
