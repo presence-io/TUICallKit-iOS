@@ -27,8 +27,8 @@ Pod::Spec.new do |spec|
 
   spec.requires_arc = true
   spec.static_framework = true
-  spec.source_files  = './iOS/TUICallKit-Swift/**/*.{h,m,mm,swift}' 
-  spec.resource      = ['./iOS/TUICallKit-Swift/Resources/*.bundle']
+  spec.source_files  = 'iOS/TUICallKit-Swift/**/*.{h,m,mm,swift}' 
+  spec.resource      = ['iOS/TUICallKit-Swift/Resources/*.bundle']
   spec.resource_bundles = {
     'TUICallKitBundle' => [
       'iOS/TUICallKit-Swift/Resources/**/*.strings',
