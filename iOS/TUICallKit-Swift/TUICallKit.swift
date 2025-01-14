@@ -135,6 +135,14 @@ public class TUICallKit: NSObject {
     }
     
     /**
+     * Get TUICallKit ViewController
+     */
+    @objc
+    public func getCallFullViewController() -> UIViewController {
+        return TUICallKitImpl.instance.getCallViewController()
+    }
+    
+    /**
      * Enable Virtual Background
      */
     @objc
@@ -148,5 +156,13 @@ public class TUICallKit: NSObject {
     @objc
     public func enableIncomingBanner(enable: Bool) {
         return TUICallKitImpl.instance.enableIncomingBanner(enable: enable)
+    }
+    
+    /**
+     * Enable Incoming Banner
+     */
+    @objc
+    public func isShowingFloatWindow() -> Bool {
+        return TUICallState.instance.isShowFullScreen.value
     }
 }

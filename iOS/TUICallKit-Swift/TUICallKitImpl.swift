@@ -219,6 +219,14 @@ class TUICallKitImpl: TUICallKit {
         return UIViewController()
     }
     
+    override func getCallFullViewController() -> UIViewController {
+        if let callWindowVC = WindowManager.instance.callWindow.rootViewController {
+            return callWindowVC
+        }
+        
+        return UIViewController()
+    }
+    
     override func enableVirtualBackground (enable: Bool) {
         CallEngineManager.instance.reportOnlineLog(enable)
         TUICallState.instance.showVirtualBackgroundButton = enable
