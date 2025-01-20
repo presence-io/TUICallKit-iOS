@@ -90,11 +90,10 @@ class LoginViewController: UIViewController {
 }
 
 extension LoginViewController: TUICallKitDelegate {
-    func getUserInfo(_ uid: String) -> TUICallKit_Swift.TUIUser {
-        return TUIUser(id: uid, nickname: "testName", avatar: "111")
+    func getUserInfo(_ uids: [String], callback: @escaping (([TUICallKit_Swift.TUIUser]) -> Void)) {
+        let user = TUIUser(id: uids.first ?? "", nickname: "testName22", avatar: "111")
+        callback([user])
     }
-    
-    
 }
 
 extension String {

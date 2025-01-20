@@ -21,7 +21,7 @@ public struct TUIUser {
 }
 
 public protocol TUICallKitDelegate {
-    func getUserInfo(_ uid: String) -> TUIUser
+    func getUserInfo(_ uids: [String], callback: @escaping (([TUIUser]) -> Void))
 }
 
 @objc

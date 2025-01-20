@@ -58,19 +58,24 @@ class User {
         V2TIMManager.sharedInstance().getFriendsInfo(userIDs) { friendInfosOptional in
             guard let friendInfos = friendInfosOptional else { return }
             var userModels: [User] = Array()
-            for friendInfo in friendInfos {
-                if let delegate = TUICallKit.createInstance().delegate {
-                    let user = delegate.getUserInfo(friendInfo.friendInfo.userID)
-                    friendInfo.friendInfo.userFullInfo.nickName = user.nickname
-                    friendInfo.friendInfo.userFullInfo.faceURL = user.avatar
-                    friendInfo.friendInfo.friendRemark = user.nickname
+            
+            if let delegate = TUICallKit.createInstance().delegate {
+                delegate.getUserInfo(userIDs) { users in
+                    for friendInfo in friendInfos {
+                        if let user = users.first(where: { $0.id == friendInfo.friendInfo.userID }) {
+                            friendInfo.friendInfo.userFullInfo.nickName = user.nickname
+                            friendInfo.friendInfo.userFullInfo.faceURL = user.avatar
+                            friendInfo.friendInfo.friendRemark = user.nickname
+                        }
+                        
+                        let userModel = convertUser(user: friendInfo.friendInfo.userFullInfo)
+                        userModel.remark.value = friendInfo.friendInfo.friendRemark ?? ""
+                        
+                        userModels.append(userModel)
+                    }
+                    response(userModels)
                 }
-                let userModel = convertUser(user: friendInfo.friendInfo.userFullInfo)
-                userModel.remark.value = friendInfo.friendInfo.friendRemark ?? ""
-                
-                userModels.append(userModel)
             }
-            response(userModels)
         } fail: { code, message in
             print("getUsersInfo file code:\(code) message:\(message ?? "")  ")
         }
