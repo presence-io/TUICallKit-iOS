@@ -10,6 +10,9 @@ target 'TUICallKitApp' do
   pod 'Kingfisher', '<= 6.3.1'
   pod 'SnapKit'
   pod 'TUICallKit-Swift', :path => "../", :subspecs => ["Professional"]
+  pod 'LookinServer', :subspecs => ['Swift'], :configurations => ['Debug']
+pod 'OpenCV'
+
   
 end
 

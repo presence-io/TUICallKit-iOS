@@ -31,6 +31,7 @@ class LoginViewController: UIViewController {
         super.viewDidLoad()
         navigationController?.navigationBar.barTintColor = .white
         ToastManager.shared.position = .center
+        TUICallKit.createInstance().delegate = self
         
         view.addSubview(loading)
         loading.snp.makeConstraints { (make) in
@@ -86,6 +87,14 @@ class LoginViewController: UIViewController {
         rootView.rootVC = self
         view = rootView
     }
+}
+
+extension LoginViewController: TUICallKitDelegate {
+    func getUserInfo(_ uid: String) -> TUICallKit_Swift.TUIUser {
+        return TUIUser(id: uid, nickname: "testName", avatar: "111")
+    }
+    
+    
 }
 
 extension String {

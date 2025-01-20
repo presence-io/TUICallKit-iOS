@@ -8,6 +8,22 @@
 import Foundation
 import TUICallEngine
 
+public struct TUIUser {
+    let id: String
+    let nickname: String
+    let avatar: String
+    
+    public init(id: String, nickname: String, avatar: String) {
+        self.id = id
+        self.nickname = nickname
+        self.avatar = avatar
+    }
+}
+
+public protocol TUICallKitDelegate {
+    func getUserInfo(_ uid: String) -> TUIUser
+}
+
 @objc
 public class TUICallKit: NSObject {
     
@@ -18,6 +34,8 @@ public class TUICallKit: NSObject {
     public static func createInstance() -> TUICallKit {
         return TUICallKitImpl.instance
     }
+    
+    public var delegate: TUICallKitDelegate?
     
     /**
      * Set user profile

@@ -59,8 +59,15 @@ class User {
             guard let friendInfos = friendInfosOptional else { return }
             var userModels: [User] = Array()
             for friendInfo in friendInfos {
+                if let delegate = TUICallKit.createInstance().delegate {
+                    let user = delegate.getUserInfo(friendInfo.friendInfo.userID)
+                    friendInfo.friendInfo.userFullInfo.nickName = user.nickname
+                    friendInfo.friendInfo.userFullInfo.faceURL = user.avatar
+                    friendInfo.friendInfo.friendRemark = user.nickname
+                }
                 let userModel = convertUser(user: friendInfo.friendInfo.userFullInfo)
                 userModel.remark.value = friendInfo.friendInfo.friendRemark ?? ""
+                
                 userModels.append(userModel)
             }
             response(userModels)
