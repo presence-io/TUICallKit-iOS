@@ -1,6 +1,6 @@
 Pod::Spec.new do |spec|
   spec.name         = 'TUICallKit-Swift'
-  spec.version      = '2.6.0.1080'
+  spec.version      = '2.7.0.1145'
   spec.platform     = :ios
   spec.ios.deployment_target = '12.0'
   spec.license      = { :type => 'Proprietary',
@@ -19,7 +19,7 @@ Pod::Spec.new do |spec|
   spec.source = {
     :git => 'https://github.com/presence-io/TUICallKit-iOS.git',
     # :tag => spec.version.to_s
-    :branch => 'main'
+    :branch => 'presence/main'
   }
   
   spec.dependency 'TUICore'
@@ -45,7 +45,7 @@ Pod::Spec.new do |spec|
   
   spec.subspec 'TRTC' do |trtc|
     trtc.dependency 'TXLiteAVSDK_TRTC'
-    trtc.dependency 'TUICallEngine/TRTC', '~> 2.6.0.1080'
+    trtc.dependency 'TUICallEngine/TRTC', '~> 2.7.0.1145'
     trtc.source_files = 'iOS/TUICallKit-Swift/**/*.{h,m,mm,swift}'
     trtc.resource_bundles = {
       'TUICallKitBundle' => [
@@ -59,7 +59,7 @@ Pod::Spec.new do |spec|
   
   spec.subspec 'Professional' do |professional|
     professional.dependency 'TXLiteAVSDK_Professional'
-    professional.dependency 'TUICallEngine/Professional', '~> 2.6.0.1080'
+    professional.dependency 'TUICallEngine/Professional', '~> 2.7.0.1145'
     professional.source_files = 'iOS/TUICallKit-Swift/**/*.{h,m,mm,swift}'
     professional.resource_bundles = {
       'TUICallKitBundle' => [
