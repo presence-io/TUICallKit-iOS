@@ -181,6 +181,6 @@ public class TUICallKit: NSObject {
      */
     @objc
     public func isShowingFloatWindow() -> Bool {
-        return TUICallState.instance.isShowFullScreen.value
+        return WindowManager.instance.isFloating
     }
 }
