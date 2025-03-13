@@ -88,9 +88,43 @@ class CallUserInfoView: UIView {
     func setUserImageAndName() {
         let remoteUser = TUICallState.instance.remoteUserList.value.first ?? User()
         userNameLabel.text = User.getUserDisplayName(user: remoteUser)
-        
         if let url = URL(string: remoteUser.avatar.value) {
-            userHeadImageView.sd_setImage(with: url)
+            userHeadImageView.sd_setImage(with: url, completed: { [weak self] image, error, cacheType, url in
+                guard let self = self, let image = image else { return }
+                if let croppedImage = image.cropToSquareIfNeeded() {
+                    self.userHeadImageView.image = croppedImage
+                } else {
+                    self.userHeadImageView.image = image
+                }
+            })
         }
+    }
+}
+
+extension UIImage {
+    func cropToSquareIfNeeded() -> UIImage? {
+        let originalWidth = self.size.width
+        let originalHeight = self.size.height
+        
+        var cropRect: CGRect = .zero
+        
+        if originalHeight > originalWidth {
+            // 高度大于宽度，以宽度为边，从顶部裁剪
+            cropRect = CGRect(x: 0, y: 0, width: originalWidth, height: originalWidth)
+        } else if originalWidth > originalHeight {
+            // 宽度大于高度，以高度为边，从中间裁剪
+            let xOffset = (originalWidth - originalHeight) / 2
+            cropRect = CGRect(x: xOffset, y: 0, width: originalHeight, height: originalHeight)
+        } else {
+            // 正方形图片，直接返回原图
+            cropRect = CGRect(x: 0, y: 0, width: originalWidth, height: originalHeight)
+        }
+        
+        // 注意：这里 cropRect 的坐标单位是基于图片的像素尺寸，如果图片的 scale 不是1，可能需要调整
+        if let cgImage = self.cgImage,
+           let croppedCGImage = cgImage.cropping(to: cropRect) {
+            return UIImage(cgImage: croppedCGImage, scale: self.scale, orientation: self.imageOrientation)
+        }
+        return nil
     }
 }
