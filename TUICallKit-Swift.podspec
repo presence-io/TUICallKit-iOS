@@ -46,7 +46,7 @@ Pod::Spec.new do |spec|
   
   spec.subspec 'TRTC' do |trtc|
     trtc.dependency 'TXLiteAVSDK_TRTC'
-    trtc.dependency 'TUICallEngine/TRTC', '~> 2.7.0.1145'
+    trtc.dependency 'TUICallEngine/TRTC', '2.7.0.1145'
     trtc.source_files = 'iOS/TUICallKit-Swift/**/*.{h,m,mm,swift}'
     trtc.resource_bundles = {
       'TUICallKitBundle' => [
@@ -60,7 +60,7 @@ Pod::Spec.new do |spec|
   
   spec.subspec 'Professional' do |professional|
     professional.dependency 'TXLiteAVSDK_Professional'
-    professional.dependency 'TUICallEngine/Professional', '~> 2.7.0.1145'
+    professional.dependency 'TUICallEngine/Professional', '2.7.0.1145'
     professional.source_files = 'iOS/TUICallKit-Swift/**/*.{h,m,mm,swift}'
     professional.resource_bundles = {
       'TUICallKitBundle' => [
