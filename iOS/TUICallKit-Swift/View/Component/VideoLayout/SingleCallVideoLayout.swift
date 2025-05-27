@@ -177,7 +177,7 @@ class SingleCallVideoLayout: UIView {
         localPreView.isHidden = false
         addSubview(localPreView)
         
-        if TUICallState.instance.selfUser.value.callStatus.value == .waiting {
+        if TUICallState.instance.selfUser.value.callStatus.value == .waiting && TUICallState.instance.isCameraOpen.value == true {
             CallEngineManager.instance.openCamera(videoView: localPreView)
         } else if TUICallState.instance.selfUser.value.callStatus.value == .accept && TUICallState.instance.isCameraOpen.value == true {
             CallEngineManager.instance.openCamera(videoView: localPreView)
