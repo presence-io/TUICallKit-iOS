@@ -163,7 +163,7 @@ class IncomingFloatView: UIView {
     }
     
     func setUserImageAndName() {
-        let remoteUser = TUICallState.instance.remoteUserList.value.first ?? User()
+        guard let remoteUser = TUICallState.instance.remoteUserList.value.first else { return }
         userNameLabel.text = User.getUserDisplayName(user: remoteUser)
         
         if let url = URL(string: remoteUser.avatar.value) {
