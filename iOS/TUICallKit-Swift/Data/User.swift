@@ -71,7 +71,13 @@ class User {
                         let userModel = convertUser(user: friendInfo.friendInfo.userFullInfo)
                         userModel.remark.value = friendInfo.friendInfo.friendRemark ?? ""
                         
-                        userModels.append(userModel)
+                        // fix two user
+                        if let existingIndex = userModels.firstIndex(where: { $0.id.value == userModel.id.value }) {
+                            userModels[existingIndex] = userModel
+                        } else {
+                            userModels.append(userModel)
+                        }
+
                     }
                     response(userModels)
                 }
@@ -101,7 +107,7 @@ class User {
             return user.nickname.value
         }
         
-        return user.id.value
+        return ""
     }
     
 }
