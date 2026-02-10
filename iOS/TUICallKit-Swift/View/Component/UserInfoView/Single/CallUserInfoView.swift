@@ -32,7 +32,7 @@ class CallUserInfoView: UIView {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        setUserImageAndName()
+        setUserImageAndName(users: TUICallState.instance.remoteUserList.value)
         registerObserveState()
     }
     
@@ -80,13 +80,13 @@ class CallUserInfoView: UIView {
     func remoteUserListChanged() {
         TUICallState.instance.remoteUserList.addObserver(remoteUserListObserver, closure: { [weak self] newValue, _ in
             guard let self = self else { return }
-            self.setUserImageAndName()
+            self.setUserImageAndName(users: newValue)
         })
     }
     
     // MARK: Update UI
-    func setUserImageAndName() {
-        guard let remoteUser = TUICallState.instance.remoteUserList.value.first else { return }
+    func setUserImageAndName(users: [User]) {
+        guard let remoteUser = users.first else { return }
         userNameLabel.text = User.getUserDisplayName(user: remoteUser)
         if let url = URL(string: remoteUser.avatar.value) {
             userHeadImageView.sd_setImage(with: url, completed: { [weak self] image, error, cacheType, url in
