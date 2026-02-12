@@ -169,7 +169,7 @@ extension TUICallState: TUICallObserver {
         
         if TUICallState.instance.scene.value == .single {
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
-                UIWindow.getTopFullscreenWindow()?.makeToast(TUICallKitLocalize(key: "TUICallKit.otherPartyHangup"), duration: 0.6)
+                UIWindow.getTopFullscreenWindow()?.tui_makeToast(TUICallKitLocalize(key: "TUICallKit.otherPartyHangup"), duration: 0.6)
             }
         }
         
@@ -190,7 +190,7 @@ extension TUICallState: TUICallObserver {
         
         if TUICallState.instance.scene.value == .single {
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
-                UIWindow.getTopFullscreenWindow()?.makeToast(TUICallKitLocalize(key: "TUICallKit.otherPartyReject"), duration: 0.6)
+                UIWindow.getTopFullscreenWindow()?.tui_makeToast(TUICallKitLocalize(key: "TUICallKit.otherPartyReject"), duration: 0.6)
             }
         }
         
@@ -217,7 +217,7 @@ extension TUICallState: TUICallObserver {
         TUICallState.instance.event.value = callEvent
         
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
-            UIWindow.getTopFullscreenWindow()?.makeToast(TUICallKitLocalize(key: "TUICallKit.lineBusy"), duration: 0.6)
+            UIWindow.getTopFullscreenWindow()?.tui_makeToast(TUICallKitLocalize(key: "TUICallKit.lineBusy"), duration: 0.6)
         }
     }
     
@@ -230,7 +230,7 @@ extension TUICallState: TUICallObserver {
         
         if TUICallState.instance.scene.value == .single {
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
-                UIWindow.getTopFullscreenWindow()?.makeToast(TUICallKitLocalize(key: "TUICallKit.otherPartyNoResponse"), duration: 0.6)
+                UIWindow.getTopFullscreenWindow()?.tui_makeToast(TUICallKitLocalize(key: "TUICallKit.otherPartyNoResponse"), duration: 0.6)
             }
         }
         
